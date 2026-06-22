@@ -219,11 +219,11 @@ html[lang="ru"] .hero-card h1 {
 /* Boutons secondaires : contour teal léger (même famille que l'accent, mais
    moins chargé que le dégradé plein) → hiérarchie claire avec le bouton primaire. */
 .btn-secondary {
-  background: rgba(94, 234, 212, 0.10);
-  border: 1px solid rgba(94, 234, 212, 0.40);
-  color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #E5E7EB;
 }
-.btn-secondary:hover { background: rgba(94, 234, 212, 0.16); }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
 
 /* ---------- Colonne latérale (à propos / contact) ------------ */
 .side-column {
