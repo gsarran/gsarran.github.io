@@ -30,9 +30,9 @@
       '<div class="container nav">' +
         '<a class="brand" href="' + base + 'index.html">Geoffrey Sarran</a>' +
         '<div class="lang-switch" aria-label="Language switcher">' +
-          '<button class="lang-btn" data-lang="fr">FR</button>' +
-          '<button class="lang-btn" data-lang="en">EN</button>' +
-          '<button class="lang-btn" data-lang="ru">RU</button>' +
+          '<button class="lang-btn" data-lang="fr" aria-label="Français" title="Français"><img class="lang-flag" src="' + base + 'assets/flags/fr.svg" alt="" width="20" height="14" /><span>FR</span></button>' +
+          '<button class="lang-btn" data-lang="en" aria-label="English" title="English"><img class="lang-flag" src="' + base + 'assets/flags/gb.svg" alt="" width="20" height="14" /><span>EN</span></button>' +
+          '<button class="lang-btn" data-lang="ru" aria-label="Русский" title="Русский"><img class="lang-flag" src="' + base + 'assets/flags/ru.svg" alt="" width="20" height="14" /><span>RU</span></button>' +
         '</div>' +
       '</div>';
     document.body.insertBefore(header, document.body.firstChild);

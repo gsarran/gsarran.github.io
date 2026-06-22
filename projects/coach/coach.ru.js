@@ -35,6 +35,8 @@ window.translations.ru = Object.assign(window.translations.ru || {}, {
   coach_overview_title: "Обзор",
   coach_n_conv: "Диалог в Telegram",
   coach_n_if: "Программа есть?",
+  coach_branch_no: "Программы нет",
+  coach_branch_yes: "Программа есть",
   coach_n_ext: "Агент-экстрактор (ИИ)",
   coach_n_rules: "Спортивные правила (код)",
   coach_n_creation: "Создание программы",

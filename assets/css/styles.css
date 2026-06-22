@@ -93,15 +93,29 @@ h1, h2, h3, p { margin-top: 0; }
 }
 
 .lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--muted);
   font-size: 13px;
   font-weight: 600;
   background: transparent;
   border: 1px solid transparent;
-  padding: 7px 11px;
+  padding: 6px 10px;
   border-radius: 999px;
   cursor: pointer;
   transition: 0.2s ease;
+}
+
+/* Petit drapeau SVG (net sur Windows, contrairement aux emojis de drapeaux) ;
+   léger liseré pour que les bandes blanches ressortent sur le header sombre. */
+.lang-flag {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
 }
 
 .lang-btn:hover,
@@ -709,8 +723,46 @@ section + section::before {
   overflow-x: auto;
 }
 .fork2-col { display: flex; flex-direction: column; gap: 40px; }
-.fork2-row { display: flex; align-items: flex-start; gap: 36px; }
-.fork2-node { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 138px; }
+.fork2-row { display: flex; align-items: flex-start; gap: 36px; position: relative; }
+/* Badges de condition sur les 2 branches de la fourche (if/else) : clarifie que
+   les chemins sont ALTERNATIFS, pas parallèles. Au-dessus du 1er nœud de la
+   branche haute, en dessous du 1er de la branche basse, centrés dessus. */
+.fork2-cond {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  background: rgba(8, 16, 29, 0.9);
+  border: 1px solid rgba(94, 234, 212, 0.4);
+  border-radius: 999px;
+  padding: 3px 9px;
+  pointer-events: none;
+}
+.fork2-cond.is-top { bottom: calc(100% + 12px); }
+.fork2-cond.is-bottom { top: calc(100% + 12px); }
+/* La fourche Coach porte des badges au-dessus/en dessous de ses branches :
+   on élargit son padding vertical pour qu'ils tiennent dans le scrollport
+   (.fork2 a overflow-x:auto, donc overflow-y:auto qui rognerait sinon). */
+#coachFork { padding-top: 42px; padding-bottom: 42px; }
+/* Libellé du nœud IF présenté en pastille, identique aux badges de condition
+   (mêmes couleur, forme et fond que .fork2-cond), mais dans le flux (non absolu). */
+.fork2-node .flow-label.is-if-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  background: rgba(8, 16, 29, 0.9);
+  border: 1px solid rgba(94, 234, 212, 0.4);
+  border-radius: 999px;
+  padding: 3px 9px;
+  white-space: nowrap;
+}
+.fork2-node { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 138px; position: relative; }
 .fork2-node .flow-label { font-size: 12px; }
 /* Nœud "IF" : pastille décision avec du texte au lieu d'un emoji */
 .fork2-node .flow-icon.is-if { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); }

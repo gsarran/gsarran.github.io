@@ -35,6 +35,8 @@ window.translations.fr = Object.assign(window.translations.fr || {}, {
   coach_overview_title: "Vue d'ensemble",
   coach_n_conv: "Conversation Telegram",
   coach_n_if: "Programme existant ?",
+  coach_branch_no: "Programme inexistant",
+  coach_branch_yes: "Programme existant",
   coach_n_ext: "Agent extracteur (IA)",
   coach_n_rules: "Règles sportives (code)",
   coach_n_creation: "Création du programme",

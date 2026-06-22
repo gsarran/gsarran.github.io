@@ -35,6 +35,8 @@ window.translations.en = Object.assign(window.translations.en || {}, {
   coach_overview_title: "Overview",
   coach_n_conv: "Telegram conversation",
   coach_n_if: "Existing program?",
+  coach_branch_no: "No program yet",
+  coach_branch_yes: "Existing program",
   coach_n_ext: "Extractor agent (AI)",
   coach_n_rules: "Sports rules (code)",
   coach_n_creation: "Program creation",

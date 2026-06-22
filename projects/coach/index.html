@@ -62,16 +62,16 @@
             <div class="fork2" id="coachFork" data-links="conv>if; if>ext; if>class; ext>rules; rules>creation; creation>prog; class>orch; orch>route; route>prog">
               <svg class="fork2-svg" aria-hidden="true"></svg>
               <div class="fork2-node" data-fk="conv"><div class="flow-icon">💬</div><div class="flow-label" data-i18n="coach_n_conv">Conversation Telegram</div></div>
-              <div class="fork2-node" data-fk="if"><div class="flow-icon is-if">IF</div><div class="flow-label" data-i18n="coach_n_if">Programme existant ?</div></div>
+              <div class="fork2-node" data-fk="if"><div class="flow-icon is-if">IF</div><div class="flow-label is-if-badge" data-i18n="coach_n_if">Programme existant ?</div></div>
               <div class="fork2-col">
                 <div class="fork2-row">
                   <div class="fork2-node" data-fk="ext"><div class="flow-icon">🧩</div><div class="flow-label" data-i18n="coach_n_ext">Agent extracteur (IA)</div></div>
-                  <div class="fork2-node" data-fk="rules"><div class="flow-icon" style="animation-delay:.5s">⚙️</div><div class="flow-label" data-i18n="coach_n_rules">Règles sportives (code)</div></div>
+                  <div class="fork2-node" data-fk="rules"><span class="fork2-cond is-top" data-i18n="coach_branch_no">Programme inexistant</span><div class="flow-icon" style="animation-delay:.5s">⚙️</div><div class="flow-label" data-i18n="coach_n_rules">Règles sportives (code)</div></div>
                   <div class="fork2-node" data-fk="creation"><div class="flow-icon" style="animation-delay:1s">🏗️</div><div class="flow-label" data-i18n="coach_n_creation">Création du programme</div></div>
                 </div>
                 <div class="fork2-row">
                   <div class="fork2-node" data-fk="class"><div class="flow-icon">🏷️</div><div class="flow-label" data-i18n="coach_n_class">Agent classificateur (IA)</div></div>
-                  <div class="fork2-node" data-fk="orch"><div class="flow-icon" style="animation-delay:.5s">⚙️</div><div class="flow-label" data-i18n="coach_n_orch">Orchestrateur (code)</div></div>
+                  <div class="fork2-node" data-fk="orch"><span class="fork2-cond is-bottom" data-i18n="coach_branch_yes">Programme existant</span><div class="flow-icon" style="animation-delay:.5s">⚙️</div><div class="flow-label" data-i18n="coach_n_orch">Orchestrateur (code)</div></div>
                   <div class="fork2-node is-wide" data-fk="route"><div class="flow-icon" style="animation-delay:1s">🔀</div><div class="flow-label" data-i18n="coach_n_route">Débrief / Question / Mise à jour</div></div>
                 </div>
               </div>
