@@ -1,0 +1,9 @@
+# Fichiers système
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Fichiers temporaires de travail (gabarits, captures de vérification)
+_*.html
+_check-*.png
+_tmp_*

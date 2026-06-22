@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geoffrey Sarran - Portfolio</title>
+  <meta name="description" content="Portfolio de Geoffrey Sarran : systèmes IA multi-agents, automatisation métier et agriculture de précision. FR / EN / RU." />
+
+  <!-- Favicon : monogramme GS, SVG, aux couleurs du site -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <!-- Open Graph / Twitter : aperçu quand le lien est partagé (LinkedIn, mail, etc.) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Geoffrey Sarran" />
+  <meta property="og:title" content="Geoffrey Sarran - Concepteur de systèmes IA & d'automatisations métier" />
+  <meta property="og:description" content="Systèmes multi-agents, automatisation métier et agriculture de précision. Portfolio trilingue FR / EN / RU." />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Geoffrey Sarran - Concepteur de systèmes IA & d'automatisations métier" />
+  <meta name="twitter:description" content="Systèmes multi-agents, automatisation métier et agriculture de précision. Portfolio trilingue FR / EN / RU." />
+  <meta property="og:url" content="https://gsarran.github.io/" />
+  <meta property="og:image" content="https://gsarran.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Geoffrey Sarran, concepteur de systèmes IA et d'automatisations métier" />
+  <meta name="twitter:image" content="https://gsarran.github.io/assets/og-image.png" />
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <!-- Le header (marque + menu + langues) est injecté par i18n.js -->
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="card hero-card">
+            <div class="eyebrow" data-i18n="hero_eyebrow">Systèmes multi-agents • Automatisation • Workflows IA</div>
+            <h1 data-i18n="hero_title">Concepteur de systèmes IA & d'automatisations métier</h1>
+            <p class="lead" data-i18n="hero_text">Après de nombreuses années en agriculture de précision, j'ai appris à comprendre, anticiper les besoins clients, et à trouver les solutions pour y répondre. Je conçois aujourd'hui des outils IA dans le même esprit : automatisations et systèmes multi-agents au service de résultats réels.</p>
+            <div class="hero-facts">
+              <div>
+                <strong>10+</strong>
+                <span data-i18n="stat_years">ans d'expérience métier</span>
+              </div>
+              <div>
+                <strong>3</strong>
+                <span data-i18n="stat_systems">projets construits de bout en bout</span>
+              </div>
+              <div>
+                <strong>FR · EN · RU</strong>
+                <span data-i18n="stat_langs">langues de travail</span>
+              </div>
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#projects" data-i18n="cta_projects">Voir mes projets</a>
+              <a class="btn btn-ghost" href="#contact" data-i18n="cta_contact">Me contacter</a>
+              <a class="btn btn-ghost" href="cv/Geoffrey_Sarran_CV_FR.pdf" data-cv download data-i18n="cta_cv">Télécharger mon CV</a>
+            </div>
+          </div>
+
+          <aside class="hero-aside">
+            <div class="hero-photo">
+              <img src="assets/geoffrey-avatar.jpg" alt="Geoffrey Sarran" width="360" height="360" />
+            </div>
+            <div class="hero-note">
+              <strong data-i18n="hero_note_title">Principe</strong>
+              <span data-i18n="hero_note_text">L'IA interprète, le code décide : des systèmes fiables et testables.</span>
+            </div>
+            <div class="hero-avail">
+              <span class="dot"></span>
+              <span class="avail-text">
+                <span class="avail-main" data-i18n="hero_avail">Ouvert aux opportunités</span>
+                <span class="avail-sub" data-i18n="hero_avail_sub">Automatisation, IA appliquée, data métier</span>
+              </span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJETS ===================== -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">01</span>
+          <h2 data-i18n="projects_title">Projets</h2>
+          <p data-i18n="projects_subtitle">Chaque fiche projet explique le besoin de départ, ce que j'ai construit, et montre le fonctionnement avec une démo.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Coach -->
+          <article class="card project-card">
+            <a class="project-thumb" href="projects/coach/index.html">
+              <img data-thumb="coach" src="vignettes/coach-fr.jpg" alt="Coach IA de Streetlifting" loading="lazy" />
+            </a>
+            <div class="project-body">
+              <div>
+                <h3 data-i18n="p_coach_title">Coach IA de Streetlifting</h3>
+                <ul class="compact-list" data-i18n-html="p_coach_text"></ul>
+                <p class="project-stack"><strong data-i18n="stack_label">Outils</strong> n8n · Telegram · Streamlit · Multi-agents</p>
+              </div>
+              <div class="project-links">
+                <a href="projects/coach/index.html" data-i18n="card_cta">Voir l'étude de cas</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Agri Monitor -->
+          <article class="card project-card">
+            <a class="project-thumb" href="projects/agri-monitor/index.html">
+              <img data-thumb="agri-monitor" src="vignettes/agri-monitor-fr.jpg" alt="Agri Monitor" loading="lazy" />
+            </a>
+            <div class="project-body">
+              <div>
+                <h3 data-i18n="p_vostok_title">Agri Monitor : Surveillance agricole multi-agents</h3>
+                <ul class="compact-list" data-i18n-html="p_vostok_text"></ul>
+                <p class="project-stack"><strong data-i18n="stack_label">Outils</strong> Python · Streamlit · Google Earth Engine</p>
+              </div>
+              <div class="project-links">
+                <a href="projects/agri-monitor/index.html" data-i18n="card_cta">Voir l'étude de cas</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- NEOBATI -->
+          <article class="card project-card">
+            <a class="project-thumb" href="projects/neobati/index.html">
+              <img data-thumb="neobati" src="vignettes/neobati-fr.jpg" alt="NEOBATI" loading="lazy" />
+            </a>
+            <div class="project-body">
+              <div>
+                <h3 data-i18n="p_neobati_title">NEOBATI : Automatisations IA + No-code</h3>
+                <ul class="compact-list" data-i18n-html="p_neobati_text"></ul>
+                <p class="project-stack"><strong data-i18n="stack_label">Outils</strong> Airtable · Make · No-code</p>
+              </div>
+              <div class="project-links">
+                <a href="projects/neobati/index.html" data-i18n="card_cta">Voir l'étude de cas</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CE QUE JE SAIS CONSTRUIRE ===================== -->
+    <section class="band" id="skills">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">02</span>
+          <h2 data-i18n="skills_title">Ce que je sais construire</h2>
+        </div>
+
+        <div class="capabilities-grid">
+          <div class="capability">
+            <span class="cap-icon">⚙️</span>
+            <h3 data-i18n="capability_auto_title">Automatiser un processus métier</h3>
+            <p class="tool-line" data-i18n="tools_auto">Airtable · Make · n8n</p>
+          </div>
+          <div class="capability">
+            <span class="cap-icon">🤖</span>
+            <h3 data-i18n="capability_ai_title">Créer un agent IA spécialisé</h3>
+            <p class="tool-line" data-i18n="tools_ai">LLM · Agents · Python</p>
+          </div>
+          <div class="capability">
+            <span class="cap-icon">📊</span>
+            <h3 data-i18n="capability_data_title">Transformer des données en décision</h3>
+            <p class="tool-line" data-i18n="tools_data">Données satellites · Météo · Capteurs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">03</span>
+          <h2 data-i18n="contact_title">Contact</h2>
+        </div>
+
+        <div class="card side-card contact-card">
+          <p class="kv"><span class="k" data-i18n="contact_email_label">Email</span>
+            <a href="mailto:geoffreysarran@gmail.com">geoffreysarran@gmail.com</a></p>
+          <p class="kv"><span class="k" data-i18n="contact_linkedin_label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/geoffrey-sarran" target="_blank" rel="noopener">linkedin.com/in/geoffrey-sarran</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container footer">
+    <span data-i18n="footer_text">Construit pour GitHub Pages · Trilingue FR / EN / RU</span>
+  </footer>
+
+  <!-- Dictionnaires (remplissent window.translations) PUIS le moteur i18n -->
+  <script src="assets/i18n/fr.js"></script>
+  <script src="assets/i18n/en.js"></script>
+  <script src="assets/i18n/ru.js"></script>
+  <script src="assets/js/i18n.js"></script>
+</body>
+</html>

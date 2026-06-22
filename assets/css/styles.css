@@ -1,0 +1,863 @@
+/* =============================================================
+   styles.css : Charte graphique partagée du portfolio
+   Thème sombre moderne, responsive, réutilisé par toutes les pages.
+   ============================================================= */
+
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-2: rgba(255, 255, 255, 0.04);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #e8edf7;
+  --muted: #9fb0cc;
+  --accent: #5eead4;
+  --accent-2: #2563eb; /* bleu roi profond (синий), pas bleu clair */
+  --max-width: 1120px;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.26);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(94, 234, 212, 0.12), transparent 25%),
+    linear-gradient(180deg, #08101d 0%, #0b1020 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(100% - 32px, var(--max-width));
+  margin: 0 auto;
+}
+
+h1, h2, h3, p { margin-top: 0; }
+
+/* ---------- Header / navigation (injecté par i18n.js) -------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(14px);
+  background: rgba(11, 16, 32, 0.72);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 20;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+}
+
+.brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: 6px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.lang-btn {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 7px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.lang-btn:hover,
+.lang-btn.active {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- Cartes génériques -------------------------------- */
+.card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Hero --------------------------------------------- */
+.hero { padding: 40px 0 30px; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 28px;
+  align-items: start;
+}
+
+.hero-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.eyebrow {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(94, 234, 212, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(94, 234, 212, 0.14);
+  font-size: 13px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+h1 {
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  line-height: 1.06;
+  margin-bottom: 14px;
+  letter-spacing: -0.03em;
+}
+/* Le titre russe est plus long : on réduit un peu sa taille pour tenir sur 2 lignes */
+html[lang="ru"] .hero-card h1 {
+  font-size: clamp(1.7rem, 2.9vw, 2.6rem);
+}
+
+.lead {
+  font-size: 1.04rem;
+  color: var(--muted);
+  max-width: 62ch;
+  margin-bottom: 20px;
+}
+
+/* Dans le héros, l'accroche occupe toute la largeur de la carte */
+.hero-card .lead { max-width: none; }
+
+/* Dans les onglets projet, l'intro s'aligne sur la largeur des blocs en dessous */
+.tab-panel .lead { max-width: none; }
+
+.cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #08101d;
+  border: none;
+}
+
+.btn-ghost { color: var(--text); }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.05); }
+
+/* ---------- Colonne latérale (à propos / contact) ------------ */
+.side-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-content: start;
+}
+
+/* Photo du héros (colonne de droite) : compacte, format carré */
+.hero-aside {
+  display: grid;
+  gap: 14px;
+}
+
+.hero-photo {
+  width: 260px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--panel-border);
+  background: var(--panel-2);
+  box-shadow: var(--shadow);
+}
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero-note {
+  width: 260px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--panel-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-note strong {
+  display: block;
+  color: var(--text);
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.hero-note span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* Indicateur de disponibilité : comble la colonne droite + signal recruteur */
+.hero-avail {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 260px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(94, 234, 212, 0.06);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+.hero-avail .dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.85);
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 4px;
+}
+/* Badge dispo sur 2 lignes : intitulé + spécialités (ex-phrase du Contact) */
+.hero-avail .avail-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.3; }
+.hero-avail .avail-sub { font-size: 12px; color: var(--muted); text-wrap: balance; }
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 2px 0 22px;
+}
+
+.hero-facts div {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-facts strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  margin-top: 4px;
+}
+
+.side-card {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--panel-2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none; /* cartes secondaires : on allège, l'ombre forte est réservée au héros */
+}
+
+.side-card h3 {
+  margin-bottom: 8px;
+  font-size: 1.02rem;
+  line-height: 1.2;
+}
+
+.side-card p {
+  margin: 0 0 4px 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.side-card a { color: var(--accent); }
+.side-card a:hover { text-decoration: underline; }
+
+.contact-card { max-width: 520px; }
+
+.kv { display: flex; gap: 8px; }
+.kv .k { color: var(--text); font-weight: 600; min-width: 72px; }
+
+.todo { color: #f0b67a; font-style: italic; }
+
+/* ---------- Sections ----------------------------------------- */
+section {
+  position: relative;
+  padding: 60px 0;
+  scroll-margin-top: 80px; /* l'ancre ne passe pas sous le header collant */
+}
+
+/* Bande alternée pleine largeur : crée un rythme entre les sections */
+section.band { background: rgba(255, 255, 255, 0.022); }
+
+/* Séparateur fin en dégradé entre deux sections consécutives */
+section + section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100% - 32px, var(--max-width));
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+.section-head { margin-bottom: 22px; }
+.section-head h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 6px; }
+.section-head p { color: var(--muted); max-width: 64ch; margin: 0; }
+
+/* Libellé d'accroche numéroté au-dessus de chaque titre de section */
+.kicker {
+  display: inline-block;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.kicker::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.subhead {
+  margin: 28px 0 14px;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+/* Deux cartes côte à côte (bio + langues) */
+.cards-2 {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+}
+
+/* Bandeau de capacités : un seul bloc, 3 items en ligne séparés par un trait.
+   Volontairement différent des cartes projet, pour éviter l'amalgame "capacité = projet du dessus". */
+.capabilities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: var(--panel-2);
+  overflow: hidden;
+}
+
+.capability {
+  flex: 1 1 0;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 28px 24px;
+}
+.capability + .capability { border-left: 1px solid var(--panel-border); }
+
+.cap-icon { font-size: 1.7rem; line-height: 1; }
+
+.capability h3 {
+  font-size: 1.02rem;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.capability .tool-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ---------- Grille projets ----------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.project-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(94, 234, 212, 0.35);
+}
+
+/* Vignette cliquable en haut de carte */
+.project-thumb {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--panel-2);
+  border-bottom: 1px solid var(--panel-border);
+}
+.project-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.project-card:hover .project-thumb img { transform: scale(1.04); }
+
+/* Corps de la carte : padding + CTA aligné en bas */
+.project-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.project-card .badge {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  background: rgba(94, 234, 212, 0.10);
+  color: var(--accent);
+  border: 1px solid rgba(94, 234, 212, 0.20);
+}
+
+.project-card h3 { font-size: 1.25rem; margin-bottom: 8px; }
+.project-card p { color: var(--muted); margin-bottom: 14px; }
+
+.compact-list {
+  margin: 0 0 14px;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.compact-list li {
+  margin-bottom: 6px;
+}
+
+.project-stack {
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.project-stack strong {
+  color: var(--text);
+  margin-right: 6px;
+}
+
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+
+.tag {
+  font-size: 12px;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+
+.project-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; }
+.project-links a { color: var(--accent); font-weight: 600; }
+.project-links a:hover { text-decoration: underline; }
+
+/* ---------- Onglets (préparés pour les pages-projets) -------- */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+
+.tab-btn {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: #08101d;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  /* Bordure extérieure assombrie (au lieu de transparent) : le bord clair du
+     dégradé (teal vif #5eead4) ressortait comme un trait blanc contre le fond
+     sombre. Ce liseré sombre neutralise le bord sans changer le dégradé. */
+  border-color: rgba(8, 16, 29, 0.55);
+}
+/* Pas de halo de focus du navigateur (le dégradé indique déjà l'onglet actif) :
+   c'est le « trait blanc » disgracieux. Chrome déclenche aussi :focus-visible au
+   clic, donc on retire le contour dans TOUS les cas de focus, sinon le contour
+   teal (cyan clair) se lit comme un trait blanc. */
+.tab-btn:focus,
+.tab-btn:focus-visible { outline: none; }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---------- Pages-projets ------------------------------------ */
+.proj-hero { padding: 30px 0 6px; }
+
+.back-link {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+.back-link:hover { color: var(--text); }
+
+.proj-hero h1 { font-size: clamp(1.8rem, 3.4vw, 2.8rem); margin-bottom: 10px; }
+.proj-hero .lead { margin-bottom: 18px; max-width: none; }
+
+/* La zone de contenu des pages projet = bande éclaircie sous le héros sombre,
+   un peu plus marquée que les bandes de l'accueil (une seule transition à lire). */
+.proj-hero + .band { background: rgba(255, 255, 255, 0.04); }
+
+/* Bloc d'étude de cas (Problème / Solution / Résultat) */
+.case-block {
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-left: 4px solid var(--accent);
+  margin-bottom: 16px;
+}
+.case-block h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--accent); }
+.case-block p { color: var(--muted); margin-bottom: 10px; }
+.case-block ul { margin: 0; padding-left: 20px; color: var(--muted); }
+.case-block li { margin-bottom: 8px; }
+.case-block strong { color: var(--text); }
+
+.case-block.is-result { border-left-color: #60a5fa; }
+.case-block.is-result h3 { color: #60a5fa; }
+
+/* Encart de contexte (note personnelle / définition) */
+.context-note {
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  background: rgba(94, 234, 212, 0.06);
+  border: 1px solid rgba(94, 234, 212, 0.18);
+  margin-bottom: 18px;
+}
+.context-note h3 { font-size: 1.02rem; margin-bottom: 8px; color: var(--accent); }
+.context-note p { color: var(--muted); margin: 0; }
+.context-note strong { color: var(--text); }
+
+/* Arborescence annotée */
+.tree {
+  background: #060b16;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.tree .c { color: var(--muted); }  /* commentaire / annotation */
+
+/* Stack technique : récapitulatif groupé en haut de l'onglet Architecture */
+.stack {
+  background: #060b16;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin: 0 0 22px;
+  display: grid;
+  gap: 12px;
+}
+.stack-group {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 6px 16px;
+  align-items: start;
+}
+.stack-cat {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  padding-top: 6px;
+}
+.stack-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.stack-badge {
+  font-size: 0.82rem;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: rgba(94, 234, 212, 0.08);
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  color: #c8f5ec;
+}
+@media (max-width: 560px) {
+  .stack-group { grid-template-columns: 1fr; gap: 6px; }
+  .stack-cat { padding-top: 0; }
+}
+
+/* ---------- Onglet Architecture : sous-sections délimitées, fonds alternés ----------
+   Les blocs de code (.tree/.stack, fond #060b16) sont plus sombres que toute teinte
+   de bande, donc ils ressortent partout : on peut alterner librement les fonds. */
+.archi-sec {
+  padding: 26px 24px;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+}
+.archi-sec:last-child { margin-bottom: 0; }
+.archi-sec.sec-light { background: rgba(255, 255, 255, 0.06); }
+.archi-sec.sec-dark  { background: rgba(255, 255, 255, 0.022); }
+.archi-head {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.archi-sec > .lead { margin-bottom: 16px; }
+.archi-sec > .tree:last-child,
+.archi-sec > .stack:last-child { margin-bottom: 0; }
+/* Schéma d'ensemble Agri : fourche parallèle ROBUSTE (inspirée du moteur de workflow
+   du projet fil rouge). Les nœuds sont en flexbox (auto-centrés, responsive) et les
+   connecteurs sont des paths SVG RECALCULÉS depuis le centre réel des icônes
+   (getBoundingClientRect) par fork.js : ils tombent donc toujours pile au centre,
+   quel que soit l'écran ou la longueur des libellés. Le point circule le long du
+   path via <animateMotion> (il suit le vrai chemin, comme le Coach/NEOBATI). */
+.fork2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  padding: 16px 0 6px;
+  overflow-x: auto;
+}
+.fork2-col { display: flex; flex-direction: column; gap: 40px; }
+.fork2-row { display: flex; align-items: flex-start; gap: 36px; }
+.fork2-node { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 138px; }
+.fork2-node .flow-label { font-size: 12px; }
+/* Nœud "IF" : pastille décision avec du texte au lieu d'un emoji */
+.fork2-node .flow-icon.is-if { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); }
+/* Nœud dont le libellé doit rester sur une seule ligne (largeur auto) */
+.fork2-node.is-wide { width: auto; }
+.fork2-node.is-wide .flow-label { white-space: nowrap; }
+/* Flux linéaires NEOBATI : nœuds à largeur fixe (204px) → les 3 flux ont la
+   MÊME largeur d'animation (3x204 + 2x44 = 700px), ce qui permet d'aligner
+   exactement la barre d'impact dessous ET de loger le plus long texte
+   d'impact RU ("Ни одного забытого напоминания...") sur une seule ligne.
+   Libellé sur UNE seule ligne (nowrap), agrandi à 14px pour la lisibilité. */
+.fork2.is-linear .fork2-node { width: 204px; }
+.fork2.is-linear .fork2-node .flow-label { white-space: nowrap; font-size: 14px; }
+/* Icônes agrandies (54->62px) pour rester lisibles, y compris pour une vue faible. */
+.fork2.is-linear .flow-icon { width: 62px; height: 62px; font-size: 1.75rem; }
+/* Barre d'impact ramenée à la largeur de l'animation (700px), centrée, texte
+   agrandi (15px) pour la lisibilité, au lieu de s'étirer sur toute la boîte noire. */
+.flow-board .flow-impact { max-width: 700px; margin-left: auto; margin-right: auto; font-size: 15px; }
+.fork2-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.fork2-line { fill: none; stroke: var(--panel-border); stroke-width: 2; }
+/* Pointillé qui défile le long du path (comme la doc du projet fil rouge) :
+   on garde toujours le chemin visible, pas juste un point. La couleur suit
+   --flow (teal par défaut sur Coach/Agri, ocre/vert/bleu par flux sur NEOBATI). */
+.fork2-flow {
+  fill: none;
+  stroke: var(--flow, var(--accent));
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.5 11;
+  animation: forkFlow 1s linear infinite;
+}
+@keyframes forkFlow { to { stroke-dashoffset: -11.5; } }
+
+/* Zone démo (vidéo à venir) */
+.demo-box {
+  border: 1px dashed var(--panel-border);
+  border-radius: var(--radius);
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--panel-2);
+}
+
+/* ---------- Canvas animés d'automatisation (NEOBATI) -------- */
+.flow-title {
+  font-size: 1.05rem;
+  color: var(--text);
+  margin: 26px 0 12px;
+  font-weight: 600;
+}
+
+/* Bloc noir contenant les canvas d'automatisation (cohérent avec le bloc code des autres projets) */
+.flow-board {
+  background: #060b16;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 6px 22px 20px;
+}
+.flow-board .flow-title { margin-top: 22px; }
+/* Option A : flux directement sur le noir (cartes transparentes) */
+.flow-board .flow-card {
+  background: transparent;
+  border-color: transparent;
+  padding: 14px 6px;
+  margin-bottom: 4px;
+}
+
+.flow-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  margin-bottom: 16px;
+  /* couleur d'accent par défaut (surchargée par .c-ocre/.c-green/.c-blue) */
+  --flow: var(--accent);
+  --flow-dim: rgba(94, 234, 212, 0.12);
+  --flow-mid: rgba(94, 234, 212, 0.30);
+}
+.flow-card.c-ocre  { --flow:#E8A040; --flow-dim:rgba(232,160,64,0.12);  --flow-mid:rgba(232,160,64,0.32); }
+.flow-card.c-green { --flow:#60D0A0; --flow-dim:rgba(96,208,160,0.12);  --flow-mid:rgba(96,208,160,0.32); }
+.flow-card.c-blue  { --flow:#5BA3F5; --flow-dim:rgba(91,163,245,0.12);  --flow-mid:rgba(91,163,245,0.32); }
+
+.flow-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: var(--flow-dim);
+  border: 1px solid var(--flow-mid);
+  animation: nodePulse 3.6s ease-in-out infinite;
+}
+
+.flow-label { font-size: 13px; color: var(--muted); line-height: 1.35; }
+
+@keyframes nodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 transparent; }
+  50%      { box-shadow: 0 0 0 5px var(--flow-dim); }
+}
+
+.flow-impact {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--flow-dim);
+  border: 1px solid var(--flow-mid);
+  font-size: 14px;
+  color: var(--text);
+}
+.flow-impact .bolt { color: var(--flow); flex-shrink: 0; }
+
+/* Accessibilité : couper les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  .flow-icon, .fork2-flow { animation: none; }
+}
+
+/* ---------- Pied de page ------------------------------------- */
+.footer {
+  padding: 30px 0 44px;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: 16px;
+}
+
+/* ---------- Responsive --------------------------------------- */
+@media (max-width: 960px) {
+  .projects-grid,
+  .cards-2,
+  .hero-grid { grid-template-columns: 1fr; }
+  .capability { flex-basis: 100%; }
+  .capability + .capability { border-left: none; border-top: 1px solid var(--panel-border); }
+  .hero-aside { justify-items: center; }
+  .hero-photo,
+  .hero-note,
+  .hero-avail { width: 100%; max-width: 280px; }
+}
+
+@media (max-width: 640px) {
+  .nav { flex-wrap: wrap; }
+  .hero-card { padding: 22px; }
+  .side-card { padding: 18px; }
+  .project-body { padding: 18px; }
+  .hero-facts { grid-template-columns: 1fr; gap: 10px; }
+}

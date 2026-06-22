@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEOBATI, automatisations IA + No-code - Geoffrey Sarran</title>
+  <meta name="description" content="Étude de cas : NEOBATI, automatisation d'une entreprise du bâtiment (IA + Airtable + Make). Valeur métier et flux d'automatisation animés." />
+  <link rel="stylesheet" href="../../assets/css/styles.css" />
+  <script>window.PAGE = { base: "../../" };</script>
+</head>
+<body>
+  <!-- Header injecté par i18n.js -->
+
+  <main>
+    <section class="proj-hero container">
+      <a class="back-link" href="../../index.html" data-i18n="proj_back">← Accueil</a>
+      <h1 data-i18n="neobati_title">NEOBATI, automatisations IA + No-code</h1>
+      <p class="lead" data-i18n="neobati_tagline">Automatiser une entreprise du bâtiment de bout en bout, avec de l'IA, Airtable et Make.</p>
+
+      <div class="tabs">
+        <button class="tab-btn" data-tab="value" data-i18n="tab_value">Valeur métier</button>
+        <button class="tab-btn" data-tab="archi" data-i18n="tab_archi">Architecture</button>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+      <!-- ===== Panneau VALEUR MÉTIER ===== -->
+      <div class="tab-panel" data-panel="value">
+        <div class="context-note">
+          <h3 data-i18n="neobati_context_title">Le cas : Néobâti Artisanat</h3>
+          <p data-i18n-html="neobati_context_html"></p>
+        </div>
+        <div class="case-block">
+          <h3 data-i18n="cs_problem_title">Problème</h3>
+          <div data-i18n-html="neobati_problem_html"></div>
+        </div>
+        <div class="case-block">
+          <h3 data-i18n="cs_solution_title">Solution</h3>
+          <div data-i18n-html="neobati_solution_html"></div>
+        </div>
+        <div class="case-block is-result">
+          <h3 data-i18n="cs_result_title">Résultat</h3>
+          <div data-i18n-html="neobati_result_html"></div>
+        </div>
+      </div>
+
+      <!-- ===== Panneau ARCHITECTURE (canvas animés) ===== -->
+      <div class="tab-panel" data-panel="archi">
+        <p class="lead" data-i18n="neobati_archi_intro">Des flux d'automatisation animés de bout en bout.</p>
+        <div class="stack" data-i18n-html="neobati_stack_html"></div>
+
+        <div class="flow-board">
+        <!-- Flux 1 : Prospection -->
+        <h3 class="flow-title" data-i18n="neobati_flow1_title">Prospection</h3>
+        <div class="flow-card c-ocre">
+          <div class="fork2 is-linear" id="neoFlow1" data-links="n1>n2; n2>n3">
+            <svg class="fork2-svg" aria-hidden="true"></svg>
+            <div class="fork2-node" data-fk="n1">
+              <div class="flow-icon">📝</div>
+              <div class="flow-label" data-i18n="neobati_f1_n1">Formulaire soumis</div>
+            </div>
+            <div class="fork2-node" data-fk="n2">
+              <div class="flow-icon" style="animation-delay:.9s">📄</div>
+              <div class="flow-label" data-i18n="neobati_f1_n2">Fiche client créée</div>
+            </div>
+            <div class="fork2-node" data-fk="n3">
+              <div class="flow-icon" style="animation-delay:1.8s">📧</div>
+              <div class="flow-label" data-i18n="neobati_f1_n3">Commerciaux notifiés</div>
+            </div>
+          </div>
+          <div class="flow-impact">
+            <span class="bolt">⚡</span>
+            <span data-i18n="neobati_f1_impact">Zéro ressaisie : le prospect est enregistré et l'équipe alertée aussitôt.</span>
+          </div>
+        </div>
+
+        <!-- Flux 2 : Facturation -->
+        <h3 class="flow-title" data-i18n="neobati_flow2_title">Facturation</h3>
+        <div class="flow-card c-green">
+          <div class="fork2 is-linear" id="neoFlow2" data-links="n1>n2; n2>n3">
+            <svg class="fork2-svg" aria-hidden="true"></svg>
+            <div class="fork2-node" data-fk="n1">
+              <div class="flow-icon">✅</div>
+              <div class="flow-label" data-i18n="neobati_f2_n1">Chantier à 100 %</div>
+            </div>
+            <div class="fork2-node" data-fk="n2">
+              <div class="flow-icon" style="animation-delay:.9s">🤖</div>
+              <div class="flow-label" data-i18n="neobati_f2_n2">Facture rédigée par IA</div>
+            </div>
+            <div class="fork2-node" data-fk="n3">
+              <div class="flow-icon" style="animation-delay:1.8s">📬</div>
+              <div class="flow-label" data-i18n="neobati_f2_n3">Envoyée au client</div>
+            </div>
+          </div>
+          <div class="flow-impact">
+            <span class="bolt">⚡</span>
+            <span data-i18n="neobati_f2_impact">Facture envoyée le jour même.</span>
+          </div>
+        </div>
+
+        <!-- Flux 3 : Trésorerie -->
+        <h3 class="flow-title" data-i18n="neobati_flow3_title">Trésorerie</h3>
+        <div class="flow-card c-blue">
+          <div class="fork2 is-linear" id="neoFlow3" data-links="n1>n2; n2>n3">
+            <svg class="fork2-svg" aria-hidden="true"></svg>
+            <div class="fork2-node" data-fk="n1">
+              <div class="flow-icon">📅</div>
+              <div class="flow-label" data-i18n="neobati_f3_n1">Échéance dépassée</div>
+            </div>
+            <div class="fork2-node" data-fk="n2">
+              <div class="flow-icon" style="animation-delay:.9s">✉️</div>
+              <div class="flow-label" data-i18n="neobati_f3_n2">Relance 1 par IA</div>
+            </div>
+            <div class="fork2-node" data-fk="n3">
+              <div class="flow-icon" style="animation-delay:1.8s">🔁</div>
+              <div class="flow-label" data-i18n="neobati_f3_n3">Relance 2 à J+7</div>
+            </div>
+          </div>
+          <div class="flow-impact">
+            <span class="bolt">⚡</span>
+            <span data-i18n="neobati_f3_impact">Aucune relance oubliée.</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <span data-i18n="footer_text">Construit pour GitHub Pages · Trilingue FR / EN / RU</span>
+  </footer>
+
+  <!-- Dictionnaires communs -->
+  <script src="../../assets/i18n/fr.js"></script>
+  <script src="../../assets/i18n/en.js"></script>
+  <script src="../../assets/i18n/ru.js"></script>
+  <!-- Dictionnaires spécifiques au projet NEOBATI -->
+  <script src="neobati.fr.js"></script>
+  <script src="neobati.en.js"></script>
+  <script src="neobati.ru.js"></script>
+  <!-- Moteurs : i18n puis onglets -->
+  <script src="../../assets/js/i18n.js"></script>
+  <script src="../../assets/js/tabs.js"></script>
+  <!-- Schémas de flux : connecteurs SVG calculés depuis le centre des icônes (module partagé) -->
+  <script src="../../assets/js/fork.js"></script>
+</body>
+</html>
