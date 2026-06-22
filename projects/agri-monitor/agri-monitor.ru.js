@@ -99,8 +99,7 @@ window.translations.ru = Object.assign(window.translations.ru || {}, {
 `<span class="c"># агент вызывает Gemini, чтобы интерпретировать погодные данные...</span>
 result = self._appeler_gemini(sys_prompt, user_prompt)
 
-<span class="c"># ...но арифметику ему не доверяем: каждое числовое значение</span>
-<span class="c"># перезаписывается точным расчётом на Python (защита от галлюцинаций)</span>
+<span class="c"># ...но арифметику ему не доверяем: каждое числовое значение перезаписывается точным расчётом на Python (защита от галлюцинаций)</span>
 result["deficit_15j_mm"]            = stats["periode_15j"]["deficit_hydrique_mm"]
 result["precipitation_15j_mm"]      = stats["periode_15j"]["precipitation_mm"]
 result["gdd_cumul_0"]               = gdd["gdd_cumul_0"]

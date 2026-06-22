@@ -99,8 +99,7 @@ window.translations.en = Object.assign(window.translations.en || {}, {
 `<span class="c"># the agent calls Gemini to interpret the weather data...</span>
 result = self._appeler_gemini(sys_prompt, user_prompt)
 
-<span class="c"># ...but it is never trusted with arithmetic: every numeric value</span>
-<span class="c"># is overwritten with the exact Python calculation (anti-hallucination)</span>
+<span class="c"># ...but it is never trusted with arithmetic: every numeric value is overwritten with the exact Python calculation (anti-hallucination)</span>
 result["deficit_15j_mm"]            = stats["periode_15j"]["deficit_hydrique_mm"]
 result["precipitation_15j_mm"]      = stats["periode_15j"]["precipitation_mm"]
 result["gdd_cumul_0"]               = gdd["gdd_cumul_0"]

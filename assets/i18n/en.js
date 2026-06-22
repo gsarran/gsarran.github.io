@@ -8,7 +8,7 @@ window.translations.en = {
 
   /* Hero */
   hero_eyebrow: "Multi-agent systems • Automation • AI workflows",
-  hero_title: "Builder of AI systems & business automations",
+  hero_title: "AI Workflow & Automation Specialist",
   hero_text: "After many years in precision agriculture, I learned to understand, anticipate client needs, and to find the right solutions for them. Today I build AI tools in the same spirit: automations and multi-agent systems geared toward real results.",
   hero_note_title: "Principle",
   hero_note_text: "The AI interprets, the code decides: reliable, testable systems.",

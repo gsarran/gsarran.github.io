@@ -140,7 +140,9 @@ h1, h2, h3, p { margin-top: 0; }
   display: grid;
   grid-template-columns: 1fr 280px;
   gap: 28px;
-  align-items: start;
+  /* Les deux colonnes finissent à la même hauteur : la carte texte s'étire
+     pour égaler la pile de droite (photo + Principe + Ouvert aux opportunités). */
+  align-items: stretch;
 }
 
 .hero-card {
@@ -213,6 +215,15 @@ html[lang="ru"] .hero-card h1 {
 
 .btn-ghost { color: var(--text); }
 .btn-ghost:hover { background: rgba(255, 255, 255, 0.05); }
+
+/* Boutons secondaires : contour teal léger (même famille que l'accent, mais
+   moins chargé que le dégradé plein) → hiérarchie claire avec le bouton primaire. */
+.btn-secondary {
+  background: rgba(94, 234, 212, 0.10);
+  border: 1px solid rgba(94, 234, 212, 0.40);
+  color: var(--accent);
+}
+.btn-secondary:hover { background: rgba(94, 234, 212, 0.16); }
 
 /* ---------- Colonne latérale (à propos / contact) ------------ */
 .side-column {
@@ -382,6 +393,9 @@ section + section::before {
 .section-head { margin-bottom: 22px; }
 .section-head h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); margin-bottom: 6px; }
 .section-head p { color: var(--muted); max-width: 64ch; margin: 0; }
+/* L'intro de la section Projets tient sur une seule ligne au bureau
+   (et se replie naturellement sur mobile). */
+#projects .section-head p { max-width: none; }
 
 /* Libellé d'accroche numéroté au-dessus de chaque titre de section */
 .kicker {

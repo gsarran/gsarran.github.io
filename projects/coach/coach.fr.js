@@ -99,6 +99,20 @@ window.translations.fr = Object.assign(window.translations.fr || {}, {
         return self._traiter_refonte(...)   <span class="c"># on reconstruit le programme</span>
     return self._traiter_question(...)      <span class="c"># l'IA répond à la question</span>`,
 
+  coach_code2_title: "Extrait commenté : l'ajustement déterministe des charges",
+  coach_code2_html:
+`def double_progression_backoff(lest_actuel, valide_au_max, pas=2.5):
+    <span class="c"># Double progression : on ne monte la charge QUE si l'athlète a validé le HAUT de la fourchette de reps sur toutes les séries.</span>
+    if not valide_au_max:
+        return lest_actuel                      <span class="c"># sinon on TIENT la charge (les reps montent d'abord)</span>
+    nouveau = arrondir(lest_actuel + pas)       <span class="c"># +2.5 kg, arrondi au palier réel</span>
+    return nouveau if nouveau > 0 else None     <span class="c"># None = retour au poids du corps</span>
+
+
+def deload(lest_1rm):
+    <span class="c"># Échecs répétés : le CODE applique un délestage déterministe (-10 %)</span>
+    return arrondir(lest_1rm * 0.90)`,
+
   /* --- Onglet Démo --- */
   coach_demo_note:
     "Parcours complet : création du programme, débrief vocal d'une séance et ajustement automatique des charges.",

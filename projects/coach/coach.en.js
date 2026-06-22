@@ -99,6 +99,20 @@ window.translations.en = Object.assign(window.translations.en || {}, {
         return self._traiter_refonte(...)   <span class="c"># rebuild the program</span>
     return self._traiter_question(...)      <span class="c"># the AI answers the question</span>`,
 
+  coach_code2_title: "Annotated snippet: deterministic load adjustment",
+  coach_code2_html:
+`def double_progression_backoff(lest_actuel, valide_au_max, pas=2.5):
+    <span class="c"># Double progression: raise the load ONLY if the athlete hit the TOP of the rep range on every set.</span>
+    if not valide_au_max:
+        return lest_actuel                      <span class="c"># otherwise HOLD the load (reps go up first)</span>
+    nouveau = arrondir(lest_actuel + pas)       <span class="c"># +2.5 kg, rounded to a real plate step</span>
+    return nouveau if nouveau > 0 else None     <span class="c"># None = back to bodyweight</span>
+
+
+def deload(lest_1rm):
+    <span class="c"># Repeated failures: the CODE applies a deterministic deload (-10%)</span>
+    return arrondir(lest_1rm * 0.90)`,
+
   /* --- Demo tab --- */
   coach_demo_note:
     "Full walkthrough: program creation, voice debrief of a session and automatic load adjustment.",

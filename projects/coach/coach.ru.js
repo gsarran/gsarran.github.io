@@ -99,6 +99,20 @@ window.translations.ru = Object.assign(window.translations.ru || {}, {
         return self._traiter_refonte(...)   <span class="c"># пересобираем программу</span>
     return self._traiter_question(...)      <span class="c"># ИИ отвечает на вопрос</span>`,
 
+  coach_code2_title: "Аннотированный фрагмент: детерминированная корректировка нагрузки",
+  coach_code2_html:
+`def double_progression_backoff(lest_actuel, valide_au_max, pas=2.5):
+    <span class="c"># Двойная прогрессия: повышаем вес ТОЛЬКО если атлет выполнил ВЕРХ диапазона повторов во всех подходах.</span>
+    if not valide_au_max:
+        return lest_actuel                      <span class="c"># иначе УДЕРЖИВАЕМ вес (сначала растут повторы)</span>
+    nouveau = arrondir(lest_actuel + pas)       <span class="c"># +2.5 кг, округление до реального шага</span>
+    return nouveau if nouveau > 0 else None     <span class="c"># None = возврат к весу тела</span>
+
+
+def deload(lest_1rm):
+    <span class="c"># Повторные неудачи: КОД применяет детерминированный сброс (-10 %)</span>
+    return arrondir(lest_1rm * 0.90)`,
+
   /* --- Вкладка «Демо» --- */
   coach_demo_note:
     "Полный сценарий: создание программы, голосовой разбор тренировки и автоматическая корректировка весов.",
