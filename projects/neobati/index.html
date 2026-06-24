@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEOBATI, automatisations IA + No-code - Geoffrey Sarran</title>
-  <meta name="description" content="Étude de cas : NEOBATI, automatisation d'une entreprise du bâtiment (IA + Airtable + Make). Valeur métier et flux d'automatisation animés." />
+  <meta name="description" content="Étude de cas : NEOBATI, automatisation d'une entreprise du bâtiment (IA + Airtable + Make). Valeur métier, architecture des données et démo des automatisations." />
   <link rel="stylesheet" href="../../assets/css/styles.css" />
   <script>window.PAGE = { base: "../../" };</script>
 </head>
@@ -20,6 +20,7 @@
       <div class="tabs">
         <button class="tab-btn" data-tab="value" data-i18n="tab_value">Valeur métier</button>
         <button class="tab-btn" data-tab="archi" data-i18n="tab_archi">Architecture</button>
+        <button class="tab-btn" data-tab="demo"  data-i18n="tab_demo">Démo</button>
       </div>
     </section>
 
@@ -45,87 +46,195 @@
         </div>
       </div>
 
-      <!-- ===== Panneau ARCHITECTURE (canvas animés) ===== -->
+      <!-- ===== Panneau ARCHITECTURE (structure du système) ===== -->
       <div class="tab-panel" data-panel="archi">
-        <p class="lead" data-i18n="neobati_archi_intro">Des flux d'automatisation animés de bout en bout.</p>
-        <div class="stack" data-i18n-html="neobati_stack_html"></div>
 
-        <div class="flow-board">
-        <!-- Flux 1 : Prospection -->
-        <h3 class="flow-title" data-i18n="neobati_flow1_title">Prospection</h3>
-        <div class="flow-card c-ocre">
-          <div class="fork2 is-linear" id="neoFlow1" data-links="n1>n2; n2>n3">
-            <svg class="fork2-svg" aria-hidden="true"></svg>
-            <div class="fork2-node" data-fk="n1">
-              <div class="flow-icon">📝</div>
-              <div class="flow-label" data-i18n="neobati_f1_n1">Formulaire soumis</div>
-            </div>
-            <div class="fork2-node" data-fk="n2">
-              <div class="flow-icon" style="animation-delay:.9s">📄</div>
-              <div class="flow-label" data-i18n="neobati_f1_n2">Fiche client créée</div>
-            </div>
-            <div class="fork2-node" data-fk="n3">
-              <div class="flow-icon" style="animation-delay:1.8s">📧</div>
-              <div class="flow-label" data-i18n="neobati_f1_n3">Commerciaux notifiés</div>
+        <!-- Section 1 : Architecture des données -->
+        <div class="archi-sec sec-light">
+          <h3 class="archi-head" data-i18n="neo_arch_data_title">Architecture des données Airtable</h3>
+          <div data-i18n-html="neo_arch_data_html"></div>
+        </div>
+
+        <!-- Section 2 : Stack technique -->
+        <div class="archi-sec sec-dark">
+          <h3 class="archi-head" data-i18n="neo_stack_heading">Stack technique</h3>
+          <div class="stack" data-i18n-html="neobati_stack_html"></div>
+        </div>
+
+        <!-- Section 3 : Schéma relationnel interactif -->
+        <div class="archi-sec sec-dark">
+          <h3 class="archi-head" data-i18n="neo_arch_schema_title">Les connexions entre les tables</h3>
+          <p class="lead" data-i18n="neo_arch_schema_intro">Survolez une table pour visualiser ses relations : les liaisons s'illuminent avec la couleur de la table.</p>
+
+          <div class="db-schema-wrap">
+            <div class="db-schema" id="neoSchema">
+              <svg viewBox="0 0 1080 700" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <path id="l-clients-devis"           class="lnk" d=""/>
+                <path id="l-clients-chantiers"       class="lnk" d=""/>
+                <path id="l-clients-factures"        class="lnk" d=""/>
+                <path id="l-contact-devis"           class="lnk" d=""/>
+                <path id="l-contact-factures"        class="lnk" d=""/>
+                <path id="l-chantiers-devis"         class="lnk" d=""/>
+                <path id="l-chantiers-factures"      class="lnk" d=""/>
+                <path id="l-factures-paiements"      class="lnk" d=""/>
+                <path id="l-chantiers-artisans"      class="lnk" d=""/>
+                <path id="l-chantiers-interventions" class="lnk" d=""/>
+                <path id="l-artisans-interventions"  class="lnk" d=""/>
+                <path id="l-chantiers-materiaux"     class="lnk" d=""/>
+                <path id="l-chantiers-ligne"         class="lnk" d=""/>
+                <path id="l-materiaux-ligne"         class="lnk" d=""/>
+                <path id="l-materiaux-fournisseurs"  class="lnk" d=""/>
+              </svg>
+
+              <div class="node n-clients" id="node-clients" style="left:40px;top:60px"
+                   data-id="clients" data-links="l-clients-devis l-clients-chantiers l-clients-factures">
+                <span class="node-icon">👤</span><span class="node-title" data-i18n="neo_t_clients">Clients</span>
+              </div>
+
+              <div class="node n-contact" id="node-contact" style="left:40px;top:390px"
+                   data-id="contact" data-links="l-contact-devis l-contact-factures">
+                <span class="node-icon">🏢</span><span class="node-title" data-i18n="neo_t_contact">Contact Néobâti</span>
+              </div>
+
+              <div class="node n-devis" id="node-devis" style="left:240px;top:60px"
+                   data-id="devis" data-links="l-clients-devis l-contact-devis l-chantiers-devis">
+                <span class="node-icon">📝</span><span class="node-title" data-i18n="neo_t_devis">Devis</span>
+              </div>
+
+              <div class="node n-chantiers" id="node-chantiers" style="left:240px;top:220px"
+                   data-id="chantiers" data-links="l-clients-chantiers l-chantiers-devis l-chantiers-factures l-chantiers-artisans l-chantiers-interventions l-chantiers-materiaux l-chantiers-ligne">
+                <span class="badge-central" data-i18n="neo_central">Table centrale</span>
+                <div class="node-row"><span class="node-icon">🏗️</span><span class="node-title" data-i18n="neo_t_chantiers">Chantiers</span></div>
+              </div>
+
+              <div class="node n-factures" id="node-factures" style="left:240px;top:390px"
+                   data-id="factures" data-links="l-clients-factures l-contact-factures l-chantiers-factures l-factures-paiements">
+                <span class="node-icon">🧾</span><span class="node-title" data-i18n="neo_t_factures">Factures</span>
+              </div>
+
+              <div class="node n-paiements" id="node-paiements" style="left:240px;top:590px"
+                   data-id="paiements" data-links="l-factures-paiements">
+                <span class="node-icon">💳</span><span class="node-title" data-i18n="neo_t_paiements">Paiements</span>
+              </div>
+
+              <div class="node n-artisans" id="node-artisans" style="left:500px;top:60px"
+                   data-id="artisans" data-links="l-chantiers-artisans l-artisans-interventions">
+                <span class="node-icon">🔧</span><span class="node-title" data-i18n="neo_t_artisans">Artisans</span>
+              </div>
+
+              <div class="node n-interventions" id="node-interventions" style="left:500px;top:390px"
+                   data-id="interventions" data-links="l-chantiers-interventions l-artisans-interventions">
+                <span class="node-icon">📍</span><span class="node-title" data-i18n="neo_t_interventions">Interventions</span>
+              </div>
+
+              <div class="node n-materiaux" id="node-materiaux" style="left:740px;top:130px"
+                   data-id="materiaux" data-links="l-chantiers-materiaux l-materiaux-ligne l-materiaux-fournisseurs">
+                <span class="node-icon">📦</span><span class="node-title" data-i18n="neo_t_materiaux">Matériaux</span>
+              </div>
+
+              <div class="node n-ligne" id="node-ligne" style="left:740px;top:390px"
+                   data-id="ligne" data-links="l-chantiers-ligne l-materiaux-ligne">
+                <span class="node-icon">📋</span><span class="node-title" data-i18n="neo_t_ligne">Ligne Matériau</span>
+              </div>
+
+              <div class="node n-fournisseurs" id="node-fournisseurs" style="left:900px;top:220px"
+                   data-id="fournisseurs" data-links="l-materiaux-fournisseurs">
+                <span class="node-icon">🚚</span><span class="node-title" data-i18n="neo_t_fournisseurs">Fournisseurs</span>
+              </div>
             </div>
           </div>
-          <div class="flow-impact">
-            <span class="bolt">⚡</span>
-            <span data-i18n="neobati_f1_impact">Zéro ressaisie : le prospect est enregistré et l'équipe alertée aussitôt.</span>
+
+          <p class="db-note" data-i18n-html="neo_chantiers_note_html"></p>
+        </div>
+
+        <!-- Section 3 : Exemples de tables -->
+        <div class="archi-sec sec-light">
+          <h3 class="archi-head" data-i18n="neo_arch_examples_title">Exemples de tables Airtable</h3>
+          <p class="lead" data-i18n="neo_arch_examples_sub">Deux exemples représentatifs du modèle de données.</p>
+          <div class="db-cards">
+            <div class="db-card" data-i18n-html="neo_card_clients_html"></div>
+            <div class="db-card" data-i18n-html="neo_card_chantiers_html"></div>
           </div>
         </div>
 
-        <!-- Flux 2 : Facturation -->
-        <h3 class="flow-title" data-i18n="neobati_flow2_title">Facturation</h3>
-        <div class="flow-card c-green">
-          <div class="fork2 is-linear" id="neoFlow2" data-links="n1>n2; n2>n3">
-            <svg class="fork2-svg" aria-hidden="true"></svg>
-            <div class="fork2-node" data-fk="n1">
-              <div class="flow-icon">✅</div>
-              <div class="flow-label" data-i18n="neobati_f2_n1">Chantier à 100 %</div>
+      </div>
+
+      <!-- ===== Panneau DÉMO (fonctionnement réel) ===== -->
+      <div class="tab-panel" data-panel="demo">
+        <p class="lead" data-i18n="neo_demo_intro">Trois automatisations réelles, du déclencheur jusqu'à l'action finale.</p>
+
+        <!-- Cas 1 : Assignation automatique des artisans -->
+        <div class="demo-case">
+          <h3 class="flow-title" data-i18n="neobati_flow1_title">Assignation automatique des artisans</h3>
+          <div class="demo-case-grid">
+            <div class="flow-board demo-flow-board">
+              <div class="flow-card c-ocre">
+                <div class="fork2 is-linear is-vertical" id="neoDemo1" data-links="n1>n2; n2>n3; n3>n4">
+                  <svg class="fork2-svg" aria-hidden="true"></svg>
+                  <div class="fork2-node" data-fk="n1"><div class="flow-icon">✅</div><div class="flow-label" data-i18n="neobati_f1_n1">Devis accepté</div></div>
+                  <div class="fork2-node" data-fk="n2"><div class="flow-icon" style="animation-delay:.7s">🏗️</div><div class="flow-label" data-i18n="neobati_f1_n2">Chantier et facture créés</div></div>
+                  <div class="fork2-node" data-fk="n3"><div class="flow-icon" style="animation-delay:1.4s">🔧</div><div class="flow-label" data-i18n="neobati_f1_n3">Artisans disponibles assignés</div></div>
+                  <div class="fork2-node" data-fk="n4"><div class="flow-icon" style="animation-delay:2.1s">💬</div><div class="flow-label" data-i18n="neobati_f1_n4">Chef de chantier notifié</div></div>
+                </div>
+              </div>
             </div>
-            <div class="fork2-node" data-fk="n2">
-              <div class="flow-icon" style="animation-delay:.9s">🤖</div>
-              <div class="flow-label" data-i18n="neobati_f2_n2">Facture rédigée par IA</div>
-            </div>
-            <div class="fork2-node" data-fk="n3">
-              <div class="flow-icon" style="animation-delay:1.8s">📬</div>
-              <div class="flow-label" data-i18n="neobati_f2_n3">Envoyée au client</div>
-            </div>
+            <button class="demo-shot-btn" type="button" data-modal-shot>
+              <img class="demo-shot" src="images/assignation_fr.png" data-shot="images/assignation" data-i18n-alt="neobati_f1_shot_alt" alt="Scénario Make : assignation automatique des artisans" loading="lazy" />
+            </button>
           </div>
-          <div class="flow-impact">
-            <span class="bolt">⚡</span>
-            <span data-i18n="neobati_f2_impact">Facture envoyée le jour même.</span>
-          </div>
+          <p class="demo-text" data-i18n="neobati_f1_impact"></p>
         </div>
 
-        <!-- Flux 3 : Trésorerie -->
-        <h3 class="flow-title" data-i18n="neobati_flow3_title">Trésorerie</h3>
-        <div class="flow-card c-blue">
-          <div class="fork2 is-linear" id="neoFlow3" data-links="n1>n2; n2>n3">
-            <svg class="fork2-svg" aria-hidden="true"></svg>
-            <div class="fork2-node" data-fk="n1">
-              <div class="flow-icon">📅</div>
-              <div class="flow-label" data-i18n="neobati_f3_n1">Échéance dépassée</div>
+        <!-- Cas 2 : Facturation -->
+        <div class="demo-case">
+          <h3 class="flow-title" data-i18n="neobati_flow2_title">Facturation</h3>
+          <div class="demo-case-grid">
+            <div class="flow-board demo-flow-board">
+              <div class="flow-card c-green">
+                <div class="fork2 is-linear is-vertical" id="neoDemo2" data-links="n1>n2; n2>n3">
+                  <svg class="fork2-svg" aria-hidden="true"></svg>
+                  <div class="fork2-node" data-fk="n1"><div class="flow-icon">✅</div><div class="flow-label" data-i18n="neobati_f2_n1">Chantier terminé</div></div>
+                  <div class="fork2-node" data-fk="n2"><div class="flow-icon" style="animation-delay:.9s">✨</div><div class="flow-label" data-i18n="neobati_f2_n2">Facture générée par IA</div></div>
+                  <div class="fork2-node" data-fk="n3"><div class="flow-icon" style="animation-delay:1.8s">✉️</div><div class="flow-label" data-i18n="neobati_f2_n3">Envoyée au client</div></div>
+                </div>
+              </div>
             </div>
-            <div class="fork2-node" data-fk="n2">
-              <div class="flow-icon" style="animation-delay:.9s">✉️</div>
-              <div class="flow-label" data-i18n="neobati_f3_n2">Relance 1 par IA</div>
-            </div>
-            <div class="fork2-node" data-fk="n3">
-              <div class="flow-icon" style="animation-delay:1.8s">🔁</div>
-              <div class="flow-label" data-i18n="neobati_f3_n3">Relance 2 à J+7</div>
-            </div>
+            <button class="demo-shot-btn" type="button" data-modal-shot>
+              <img class="demo-shot" src="images/facture_fr.png" data-shot="images/facture" data-i18n-alt="neobati_f2_shot_alt" alt="Scénario Make : facturation" loading="lazy" />
+            </button>
           </div>
-          <div class="flow-impact">
-            <span class="bolt">⚡</span>
-            <span data-i18n="neobati_f3_impact">Aucune relance oubliée.</span>
-          </div>
+          <p class="demo-text" data-i18n="neobati_f2_impact"></p>
         </div>
+
+        <!-- Cas 3 : Rapport d'avancement -->
+        <div class="demo-case">
+          <h3 class="flow-title" data-i18n="neobati_flow3_title">Rapport d'avancement des travaux</h3>
+          <div class="demo-case-grid">
+            <div class="flow-board demo-flow-board">
+              <div class="flow-card c-blue">
+                <div class="fork2 is-linear is-vertical" id="neoDemo3" data-links="n1>n2; n2>n3; n3>n4">
+                  <svg class="fork2-svg" aria-hidden="true"></svg>
+                  <div class="fork2-node" data-fk="n1"><div class="flow-icon">📱</div><div class="flow-label" data-i18n="neobati_f3_n1">Formulaire Fillout ouvert</div></div>
+                  <div class="fork2-node" data-fk="n2"><div class="flow-icon" style="animation-delay:.7s">📊</div><div class="flow-label" data-i18n="neobati_f3_n2">Avancement renseigné</div></div>
+                  <div class="fork2-node" data-fk="n3"><div class="flow-icon" style="animation-delay:1.4s">📄</div><div class="flow-label" data-i18n="neobati_f3_n3">Rapport PDF généré</div></div>
+                  <div class="fork2-node" data-fk="n4"><div class="flow-icon" style="animation-delay:2.1s">📬</div><div class="flow-label" data-i18n="neobati_f3_n4">Envoyé au chef de chantier</div></div>
+                </div>
+              </div>
+            </div>
+            <button class="demo-shot-btn" type="button" data-modal-shot>
+              <img class="demo-shot" src="images/rapport_fr.png" data-shot="images/rapport" data-i18n-alt="neobati_f3_shot_alt" alt="Scénario Make : rapport d'avancement des travaux" loading="lazy" />
+            </button>
+          </div>
+          <p class="demo-text" data-i18n="neobati_f3_impact"></p>
         </div>
       </div>
       </div>
     </section>
+
+    <div class="shot-modal" id="shotModal" aria-hidden="true" role="dialog" aria-modal="true">
+      <button class="shot-modal-close" type="button" data-i18n-aria-label="neo_modal_close">Fermer</button>
+      <img class="shot-modal-img" alt="" />
+    </div>
   </main>
 
   <footer class="container footer">
@@ -143,7 +252,8 @@
   <!-- Moteurs : i18n puis onglets -->
   <script src="../../assets/js/i18n.js"></script>
   <script src="../../assets/js/tabs.js"></script>
-  <!-- Schémas de flux : connecteurs SVG calculés depuis le centre des icônes (module partagé) -->
+  <!-- Schémas de flux (canvas Démo) + schéma relationnel interactif -->
   <script src="../../assets/js/fork.js"></script>
+  <script src="schema.js"></script>
 </body>
 </html>

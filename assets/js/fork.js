@@ -34,6 +34,7 @@
     if (!svg) return;
     var links = parseLinks(canvas);
     if (!links.length) return;
+    var vertical = canvas.classList.contains("is-vertical");
 
     /* combien de departs / arrivees par noeud (pour reperer fourches et jonctions) */
     var outCount = {}, inCount = {};
@@ -50,6 +51,8 @@
       return {
         left:  r.left  - f.left,
         right: r.right - f.left,
+        top:   r.top   - f.top,
+        bottom:r.bottom- f.top,
         cx:    r.left  - f.left + r.width  / 2,
         cy:    r.top   - f.top  + r.height / 2
       };
@@ -78,6 +81,22 @@
       });
       if (!ok) return;
       svg.setAttribute("viewBox", "0 0 " + f.width + " " + f.height);
+
+      if (vertical) {
+        var vsegs = [];
+        links.forEach(function (l) {
+          var a = c[l.from], b = c[l.to];
+          vsegs.push("M " + a.cx + " " + (a.bottom + M) + " L " + b.cx + " " + (b.top - M));
+        });
+        vsegs.forEach(function (d, i) { byId(canvas.id + "_b" + i, "fork2-line").setAttribute("d", d); });
+        vsegs.forEach(function (d, i) { byId(canvas.id + "_f" + i, "fork2-flow").setAttribute("d", d); });
+        for (var vj = vsegs.length; document.getElementById(canvas.id + "_b" + vj); vj++) {
+          document.getElementById(canvas.id + "_b" + vj).setAttribute("d", "");
+          var vef = document.getElementById(canvas.id + "_f" + vj);
+          if (vef) vef.setAttribute("d", "");
+        }
+        return;
+      }
 
       /* coude partage : une fourche (meme depart) tourne au meme X juste apres
          le noeud ; une jonction (meme arrivee) tourne au meme X juste avant. */
@@ -126,6 +145,7 @@
 
     if (window.ResizeObserver) new ResizeObserver(build).observe(canvas);
     window.addEventListener("resize", build);
+    window.addEventListener("portfolio:languagechange", function () { requestAnimationFrame(build); });
     document.querySelectorAll(".tab-btn").forEach(function (b) {
       b.addEventListener("click", function () { requestAnimationFrame(build); });
     });

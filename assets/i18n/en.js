@@ -10,7 +10,7 @@ window.translations.en = {
   hero_eyebrow: "Multi-agent systems • Automation • AI workflows",
   hero_title: "AI Workflow & Automation Specialist",
   hero_text: "After many years in precision agriculture, I learned to understand, anticipate client needs, and to find the right solutions for them. Today I build AI tools in the same spirit: automations and multi-agent systems geared toward real results.",
-  hero_note_title: "Principle",
+  hero_note_title: "My AI motto",
   hero_note_text: "The AI interprets, the code decides: reliable, testable systems.",
   hero_avail: "Open to opportunities",
   hero_avail_sub: "Automation, applied AI, business data",
@@ -43,6 +43,7 @@ window.translations.en = {
   projects_subtitle: "Each project page explains the initial need, what I built, and shows how it works with a demo.",
   card_cta: "View case study",
   badge_deployed: "Deployed",
+  badge_flagship: "Flagship project",
   badge_demo: "Demo",
   badge_capstone: "Capstone",
 

@@ -10,7 +10,7 @@ window.translations.fr = {
   hero_eyebrow: "Systèmes multi-agents • Automatisation • Workflows IA",
   hero_title: "Spécialiste Workflow IA & Automatisation",
   hero_text: "Après de nombreuses années en agriculture de précision, j'ai appris à comprendre, anticiper les besoins clients, et à trouver les solutions pour y répondre. Je conçois aujourd'hui des outils IA dans le même esprit : automatisations et systèmes multi-agents au service de résultats réels.",
-  hero_note_title: "Principe",
+  hero_note_title: "Ma devise IA",
   hero_note_text: "L'IA interprète, le code décide : des systèmes fiables et testables.",
   hero_avail: "Ouvert aux opportunités",
   hero_avail_sub: "Automatisation, IA appliquée, data métier",
@@ -43,6 +43,7 @@ window.translations.fr = {
   projects_subtitle: "Chaque fiche projet explique le besoin de départ, ce que j'ai construit, et montre le fonctionnement avec une démo.",
   card_cta: "Voir l'étude de cas",
   badge_deployed: "Déployé",
+  badge_flagship: "Projet phare",
   badge_demo: "Démo",
   badge_capstone: "Projet fil rouge",
 

@@ -55,14 +55,33 @@
       if (dict[key] != null) el.innerHTML = dict[key];
     });
 
-    // Vignettes spécifiques à la langue : data-thumb="coach" -> vignettes/coach-<lang>.jpg
+    // Attributs traduits (accessibilite et images)
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-alt");
+      if (dict[key] != null) el.setAttribute("alt", dict[key]);
+    });
+    document.querySelectorAll("[data-i18n-aria-label]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-aria-label");
+      if (dict[key] != null) el.setAttribute("aria-label", dict[key]);
+    });
+
+    // Vignettes specifiques a la langue : data-thumb="coach" -> vignettes/coach-<lang>.jpg
+    // Variantes possibles : data-thumb-sep="_", data-thumb-ext="png".
     document.querySelectorAll("[data-thumb]").forEach(function (img) {
-      img.src = base + "vignettes/" + img.getAttribute("data-thumb") + "-" + lang + ".jpg";
+      var sep = img.getAttribute("data-thumb-sep") || "-";
+      var ext = img.getAttribute("data-thumb-ext") || "jpg";
+      img.src = base + "vignettes/" + img.getAttribute("data-thumb") + sep + lang + "." + ext;
     });
 
     // Lien CV spécifique à la langue : data-cv -> cv/Geoffrey_Sarran_CV_<LANG>.pdf
     document.querySelectorAll("[data-cv]").forEach(function (a) {
       a.href = base + "cv/Geoffrey_Sarran_CV_" + lang.toUpperCase() + ".pdf";
+    });
+
+    // Captures d'écran spécifiques à la langue : data-shot="images/x" -> images/x_<lang>.png
+    // (chemin relatif à la page, donc pas de préfixe base)
+    document.querySelectorAll("[data-shot]").forEach(function (img) {
+      img.src = img.getAttribute("data-shot") + "_" + lang + ".png";
     });
 
     // Bouton de langue actif
@@ -72,6 +91,7 @@
 
     document.documentElement.lang = lang;
     try { localStorage.setItem("portfolio-lang", lang); } catch (e) {}
+    window.dispatchEvent(new CustomEvent("portfolio:languagechange", { detail: { lang: lang } }));
   }
 
   /* ---- 3. Câblage des boutons + langue initiale ------------- */

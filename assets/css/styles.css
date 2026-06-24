@@ -396,6 +396,7 @@ section + section::before {
 /* L'intro de la section Projets tient sur une seule ligne au bureau
    (et se replie naturellement sur mobile). */
 #projects .section-head p { max-width: none; }
+#projects-title { scroll-margin-top: 72px; }
 
 /* Libellé d'accroche numéroté au-dessus de chaque titre de section */
 .kicker {
@@ -488,6 +489,15 @@ section + section::before {
   border-color: rgba(94, 234, 212, 0.35);
 }
 
+/* Projet mis en avant : fin contour doré + légère lueur, assortis au badge. */
+.project-card.is-flagship {
+  border-color: rgba(234, 179, 8, 0.55);
+  box-shadow: var(--shadow), 0 0 18px rgba(234, 179, 8, 0.10);
+}
+.project-card.is-flagship:hover {
+  border-color: rgba(234, 179, 8, 0.85);
+}
+
 /* Vignette cliquable en haut de carte */
 .project-thumb {
   display: block;
@@ -504,6 +514,22 @@ section + section::before {
   transition: transform 0.35s ease;
 }
 .project-card:hover .project-thumb img { transform: scale(1.04); }
+
+/* Badge "projet phare" : tag or "néon" (ambre vif + lueur) placé en bas de la
+   carte du projet mis en avant, aligné à droite face au lien "Voir l'étude de cas". */
+.card-badge {
+  margin-left: auto; /* pousse le badge tout à droite, face au CTA */
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #FACC15;
+  background: rgba(234, 179, 8, 0.08);
+  border: 1px solid #EAB308;
+  border-radius: 999px;
+  padding: 3px 10px;
+  box-shadow: 0 0 12px rgba(234, 179, 8, 0.30);
+  white-space: nowrap;
+}
 
 /* Corps de la carte : padding + CTA aligné en bas */
 .project-body {
@@ -712,6 +738,8 @@ section + section::before {
 .archi-sec:last-child { margin-bottom: 0; }
 .archi-sec.sec-light { background: rgba(255, 255, 255, 0.06); }
 .archi-sec.sec-dark  { background: rgba(255, 255, 255, 0.022); }
+.archi-sec p { color: var(--muted); }
+.archi-sec strong { color: var(--text); }
 .archi-head {
   font-size: 1.05rem;
   font-weight: 600;
@@ -792,6 +820,32 @@ section + section::before {
 .fork2.is-linear .fork2-node .flow-label { white-space: nowrap; font-size: 14px; }
 /* Icônes agrandies (54->62px) pour rester lisibles, y compris pour une vue faible. */
 .fork2.is-linear .flow-icon { width: 62px; height: 62px; font-size: 1.75rem; }
+.fork2.is-linear.is-vertical {
+  flex-direction: column;
+  gap: 34px;
+  min-height: 330px;
+  padding: 14px 0;
+  overflow: hidden;
+}
+.fork2.is-linear.is-vertical .fork2-node {
+  width: min(248px, 100%);
+  min-height: 86px;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+.fork2.is-linear.is-vertical .fork2-node .flow-label {
+  white-space: normal;
+  text-align: right;
+  text-wrap: balance;
+  flex: 0 1 160px;
+}
+.fork2.is-linear.is-vertical .flow-icon {
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 800;
+}
 /* Barre d'impact ramenée à la largeur de l'animation (700px), centrée, texte
    agrandi (15px) pour la lisibilité, au lieu de s'étirer sur toute la boîte noire. */
 .flow-board .flow-impact { max-width: 700px; margin-left: auto; margin-right: auto; font-size: 15px; }
@@ -926,4 +980,288 @@ section + section::before {
   .side-card { padding: 18px; }
   .project-body { padding: 18px; }
   .hero-facts { grid-template-columns: 1fr; gap: 10px; }
+}
+
+/* =============================================================
+   Schéma relationnel Airtable (NEOBATI, onglet Architecture)
+   Canvas logique 1080x700 mis à l'échelle par schema.js.
+   ============================================================= */
+.db-schema-wrap { position: relative; width: 100%; margin: 10px 0 4px; overflow: hidden; }
+.db-schema {
+  position: relative;
+  width: 1080px;
+  height: 700px;
+  transform-origin: top left;
+  background: #060b16;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+}
+.db-schema svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; overflow: visible; }
+.db-schema .node {
+  position: absolute;
+  width: 160px;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 11px;
+  background: #11161f;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  cursor: default;
+  transition: opacity 0.3s;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.db-schema .node-icon { font-size: 15px; flex-shrink: 0; }
+.db-schema .node-title { font-size: 13px; font-weight: 600; line-height: 1.2; }
+.db-schema .n-chantiers {
+  height: 70px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5px;
+  background: #1f1c12;
+  border-color: rgba(240, 160, 48, 0.55) !important;
+}
+.db-schema .n-chantiers .node-title { color: #F0A030; }
+.db-schema .n-chantiers .node-row { display: flex; align-items: center; gap: 10px; }
+.db-schema .badge-central {
+  font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #F0A030; background: rgba(240, 160, 48, 0.14);
+  border: 1px solid rgba(240, 160, 48, 0.3); border-radius: 20px; padding: 1px 8px;
+}
+.db-schema .n-clients       { border-color: rgba(91, 163, 245, 0.45); }  .db-schema .n-clients .node-title       { color: #5BA3F5; }
+.db-schema .n-contact       { border-color: rgba(176, 127, 232, 0.45); } .db-schema .n-contact .node-title       { color: #B07FE8; }
+.db-schema .n-devis         { border-color: rgba(220, 220, 220, 0.45); } .db-schema .n-devis .node-title         { color: #D8D8D8; }
+.db-schema .n-factures      { border-color: rgba(240, 120, 64, 0.45); }  .db-schema .n-factures .node-title      { color: #F07840; }
+.db-schema .n-paiements     { border-color: rgba(96, 212, 144, 0.45); }  .db-schema .n-paiements .node-title     { color: #60D490; }
+.db-schema .n-artisans      { border-color: rgba(240, 100, 160, 0.45); } .db-schema .n-artisans .node-title      { color: #F064A0; }
+.db-schema .n-interventions { border-color: rgba(56, 201, 192, 0.45); }  .db-schema .n-interventions .node-title { color: #38C9C0; }
+.db-schema .n-materiaux     { border-color: rgba(232, 96, 112, 0.45); }  .db-schema .n-materiaux .node-title     { color: #E86070; }
+.db-schema .n-ligne         { border-color: rgba(212, 184, 74, 0.45); }  .db-schema .n-ligne .node-title         { color: #D4B84A; }
+.db-schema .n-fournisseurs  { border-color: rgba(155, 139, 228, 0.45); } .db-schema .n-fournisseurs .node-title  { color: #9B8BE4; }
+.db-schema .node.dimmed { opacity: 0.1; }
+.db-schema .node.lit { opacity: 1 !important; }
+.db-schema .lnk {
+  fill: none; stroke: rgba(255, 255, 255, 0.15); stroke-width: 1.5;
+  stroke-linecap: square; stroke-linejoin: miter;
+  transition: stroke-width 0.2s, opacity 0.2s;
+}
+.db-schema .lnk.dimmed { opacity: 0.04; }
+.db-schema .lnk.active { stroke-width: 3; opacity: 1; }
+
+/* Note "table centrale" sous le schéma */
+.db-note { margin-top: 16px; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+.db-note .badge-central {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.03em;
+  color: #F0A030; background: rgba(240, 160, 48, 0.14);
+  border: 1px solid rgba(240, 160, 48, 0.4); border-radius: 999px; padding: 2px 10px; margin-right: 6px;
+}
+
+/* Liste des 10 tables (section 1) */
+.db-table-list { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; padding: 0; }
+.db-table-list li {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--panel-border);
+  border-radius: 999px; padding: 5px 12px;
+}
+
+/* Cartes "exemples de tables" (section 3) */
+.db-cards { display: grid; gap: 16px; margin-top: 8px; }
+@media (min-width: 720px) { .db-cards { grid-template-columns: 1fr 1fr; } }
+.db-card { background: #060b16; border: 1px solid var(--panel-border); border-radius: var(--radius-sm); padding: 18px 20px; }
+.db-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.db-card-name {
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: var(--accent);
+}
+.db-card .badge-central {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
+  color: #F0A030; background: rgba(240, 160, 48, 0.14);
+  border: 1px solid rgba(240, 160, 48, 0.4); border-radius: 999px; padding: 2px 9px;
+}
+.db-card-section { margin-top: 14px; }
+.db-card-section:first-child { margin-top: 0; }
+.db-card-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.db-fields { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+.db-fields li {
+  position: relative;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 12.5px; color: var(--muted); padding: 4px 0 4px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.db-fields li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 800;
+}
+.db-card p { font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; line-height: 1.65; }
+
+/* Onglet Démo NEOBATI : chaque cas = canvas animé vertical + screenshot Make + texte */
+.demo-case {
+  margin-bottom: 30px;
+  padding: 22px 24px 24px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--panel-border);
+}
+.demo-case:last-child { margin-bottom: 0; }
+.demo-case .flow-title { margin-top: 0; }
+.demo-case-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.48fr) minmax(520px, 1.55fr);
+  align-items: stretch;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+.demo-flow-board {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+}
+.demo-flow-board .flow-card {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.demo-shot-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.demo-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  max-height: 520px;
+  object-fit: contain;
+  margin: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow);
+  background: #060b16;
+  transition: transform 0.2s ease, border-color 0.2s ease, filter 0.2s ease;
+}
+.demo-shot-btn:hover .demo-shot,
+.demo-shot-btn:focus-visible .demo-shot {
+  transform: translateY(-2px);
+  border-color: rgba(94, 234, 212, 0.35);
+  filter: brightness(1.04);
+}
+.demo-text {
+  max-width: none;
+  margin: 0;
+  padding: 10px 14px 10px 36px;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  line-height: 1.55;
+  text-wrap: pretty;
+  background: var(--flow-dim, rgba(94, 234, 212, 0.08));
+  border: 1px solid var(--flow-mid, rgba(94, 234, 212, 0.24));
+  position: relative;
+}
+.demo-text::before {
+  content: "⚡";
+  position: absolute;
+  left: 15px;
+  top: 10px;
+  color: var(--flow, var(--accent));
+  font-weight: 800;
+}
+.demo-case:nth-of-type(1) .demo-text {
+  --flow: #E8A040;
+  --flow-dim: rgba(232, 160, 64, 0.12);
+  --flow-mid: rgba(232, 160, 64, 0.32);
+}
+.demo-case:nth-of-type(2) .demo-text {
+  --flow: #60D0A0;
+  --flow-dim: rgba(96, 208, 160, 0.12);
+  --flow-mid: rgba(96, 208, 160, 0.32);
+}
+.demo-case:nth-of-type(3) .demo-text {
+  --flow: #5BA3F5;
+  --flow-dim: rgba(91, 163, 245, 0.12);
+  --flow-mid: rgba(91, 163, 245, 0.32);
+}
+
+.shot-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(6px);
+}
+.shot-modal.is-open { display: flex; }
+.shot-modal-img {
+  display: block;
+  max-width: min(96vw, 1440px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #060b16;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+}
+.shot-modal-close {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(8, 16, 29, 0.88);
+  color: var(--text);
+  font-size: 0;
+  cursor: pointer;
+}
+.shot-modal-close::before,
+.shot-modal-close::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+.shot-modal-close::before { transform: rotate(45deg); }
+.shot-modal-close::after { transform: rotate(-45deg); }
+
+@media (max-width: 860px) {
+  .demo-case { padding: 18px; }
+  .demo-case-grid { grid-template-columns: 1fr; }
+  .demo-shot { min-height: 220px; max-height: none; height: auto; }
+  .fork2.is-linear.is-vertical { min-height: 300px; }
+}
+
+@media (max-width: 520px) {
+  .shot-modal { padding: 14px; }
+  .shot-modal-img { max-width: 96vw; max-height: 86vh; }
+  .shot-modal-close { top: 10px; right: 10px; }
 }
