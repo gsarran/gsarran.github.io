@@ -9,9 +9,16 @@
    la page), puis déclenche le suivi.
 
    GA4 enregistre déjà automatiquement les pages vues. On ajoute
-   en plus un évènement maison quand le visiteur change de langue
-   (FR / EN / RU se fait sans recharger la page), pour voir quelles
-   langues sont consultées.
+   en plus des évènements maison pour suivre les interactions clés :
+   - change_language   : clic sur un drapeau (FR / EN / RU)
+   - select_tab        : clic sur un onglet (Valeur métier / Architecture / Démo)
+   - video_start       : la vidéo de démo est lancée
+   - video_complete    : la vidéo de démo est regardée jusqu'au bout
+   - enlarge_screenshot: agrandissement d'une capture Make (NEOBATI)
+
+   Tout passe par la DÉLÉGATION d'évènements (un seul écouteur posé
+   sur document) pour que ça marche même quand le contenu est injecté
+   après coup par i18n.js (vidéo, onglets) ou un changement de langue.
    ============================================================= */
 (function () {
   "use strict";
@@ -31,14 +38,54 @@
   gtag("js", new Date());
   gtag("config", GA_ID);
 
-  // 3. Suivi du changement de langue (délégation : marche même si
-  //    le header est injecté après, par i18n.js)
+  // Quel projet est consulté ? (déduit de l'URL : /projects/<slug>/...)
+  function project() {
+    var m = window.location.pathname.match(/\/projects\/([^/]+)\//);
+    return m ? m[1] : "hub";
+  }
+
+  // 3. Clics : langue, onglets, agrandissement des captures NEOBATI
+  //    (un seul écouteur, délégation par le plus proche élément ciblé)
   document.addEventListener("click", function (e) {
-    var btn = e.target.closest ? e.target.closest(".lang-btn") : null;
-    if (btn) {
-      gtag("event", "change_language", {
-        language: btn.getAttribute("data-lang")
+    if (!e.target.closest) return;
+
+    var lang = e.target.closest(".lang-btn");
+    if (lang) {
+      gtag("event", "change_language", { language: lang.getAttribute("data-lang") });
+      return;
+    }
+
+    var tab = e.target.closest(".tab-btn");
+    if (tab) {
+      gtag("event", "select_tab", {
+        project: project(),
+        tab: tab.getAttribute("data-tab")   // value | archi | demo
+      });
+      return;
+    }
+
+    var shotBtn = e.target.closest("[data-modal-shot]");
+    if (shotBtn) {
+      var img = shotBtn.querySelector(".demo-shot");
+      gtag("event", "enlarge_screenshot", {
+        project: project(),
+        screenshot: img ? img.getAttribute("data-shot") : null
       });
     }
   });
+
+  // 4. Vidéo de démo. Les évènements media (play/ended) ne « remontent »
+  //    pas : on écoute donc en PHASE DE CAPTURE (3e argument = true), ce
+  //    qui les attrape même si la vidéo est injectée par i18n.js.
+  document.addEventListener("play", function (e) {
+    if (e.target && e.target.tagName === "VIDEO") {
+      gtag("event", "video_start", { project: project() });
+    }
+  }, true);
+
+  document.addEventListener("ended", function (e) {
+    if (e.target && e.target.tagName === "VIDEO") {
+      gtag("event", "video_complete", { project: project() });
+    }
+  }, true);
 })();
