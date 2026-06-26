@@ -482,6 +482,7 @@ section + section::before {
   display: flex;
   flex-direction: column;
   transition: 0.2s ease;
+  position: relative; /* ancre le lien étiré qui rend toute la tuile cliquable */
 }
 
 .project-card:hover {
@@ -593,6 +594,20 @@ section + section::before {
 .project-links { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; }
 .project-links a { color: var(--accent); font-weight: 600; }
 .project-links a:hover { text-decoration: underline; }
+
+/* Toute la tuile projet est cliquable : le lien "Voir l'étude de cas" est
+   "étiré" par un pseudo-élément transparent qui recouvre la carte entière
+   (technique stretched-link). Un seul vrai lien = bon pour l'accessibilité. */
+.project-links a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+/* Le badge "projet phare" reste au-dessus du lien étiré (lisible, net). */
+.card-badge { position: relative; z-index: 2; }
+/* Le CTA se souligne quand on survole n'importe où sur la carte. */
+.project-card:hover .project-links a { text-decoration: underline; }
 
 /* ---------- Onglets (préparés pour les pages-projets) -------- */
 .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
