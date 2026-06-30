@@ -9,7 +9,7 @@ window.translations.en = {
   /* Hero */
   hero_eyebrow: "Multi-agent systems • Automation • AI workflows",
   hero_title: "AI Workflow & Automation Specialist",
-  hero_text: "After many years in precision agriculture, I learned to understand, anticipate client needs, and to find the right solutions for them. Today I build AI tools in the same spirit: automations and multi-agent systems geared toward real results.",
+  hero_text: "<strong>Building AI agents and workflow automation for AgTech and data-driven businesses.</strong> With over 10 years of experience in precision agriculture and customer success, I design practical AI solutions that transform complex business processes into reliable, intelligent workflows.",
   hero_note_title: "My AI motto",
   hero_note_text: "The AI interprets, the code decides: reliable, testable systems.",
   hero_avail: "Open to opportunities",

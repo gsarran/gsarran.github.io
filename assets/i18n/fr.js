@@ -9,7 +9,7 @@ window.translations.fr = {
   /* Hero */
   hero_eyebrow: "Systèmes multi-agents • Automatisation • Workflows IA",
   hero_title: "Spécialiste Workflow IA & Automatisation",
-  hero_text: "Après de nombreuses années en agriculture de précision, j'ai appris à comprendre, anticiper les besoins clients, et à trouver les solutions pour y répondre. Je conçois aujourd'hui des outils IA dans le même esprit : automatisations et systèmes multi-agents au service de résultats réels.",
+  hero_text: "<strong>Je conçois des agents IA et des automatisations de workflows pour l'AgTech et les entreprises pilotées par la donnée.</strong> Fort de plus de 10 ans d'expérience en agriculture de précision et en Customer Success, je conçois des solutions d'IA concrètes qui transforment des processus métier complexes en workflows intelligents, fiables et performants.",
   hero_note_title: "Ma devise IA",
   hero_note_text: "L'IA interprète, le code décide : des systèmes fiables et testables.",
   hero_avail: "Ouvert aux opportunités",
